@@ -11,11 +11,13 @@ export class BookRepository extends Repository<BookEntity>{
   constructor(private readonly dataSource: DataSource) {
     super(BookEntity, dataSource.createEntityManager());
   }
-
+//     const book = await this.bookRepository.getBook(id);
   public async listBooks(): Promise<BookEntity[]> {
     return this.bookRepository.find();
   }
 
+
+  
   public async getBooksByAuthor(authorId: string): Promise<BookEntity[]> {
     return this.bookRepository.find({ where: { authorId } });
   }
@@ -24,6 +26,7 @@ export class BookRepository extends Repository<BookEntity>{
     return this.bookRepository.findOneBy({ id });
   }
 
+  // public async getBook(id: string): Promise<BookModel> {
   public async createBook(input: CreateBookModel): Promise<BookEntity> {
     const result = await this.bookRepository.save(
       this.bookRepository.create(input),
@@ -31,6 +34,7 @@ export class BookRepository extends Repository<BookEntity>{
     return result;
   }
 
+  // public async createBook(input: CreateBookModel): Promise<BookModel> {
   public async updateBook(
     id: string,
     input: UpdateBookModel,
@@ -38,6 +42,7 @@ export class BookRepository extends Repository<BookEntity>{
     await this.bookRepository.update(id, input);
     return this.getBook(id);
   }
+
 
   public async deleteBook(id: string): Promise<void> {
     await this.bookRepository.delete(id);
