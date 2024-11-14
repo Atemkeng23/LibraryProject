@@ -13,23 +13,22 @@ export class AuthorRepository {
     this.dataSource.getRepository(AuthorEntity);
 
   constructor(private readonly dataSource: DataSource) {}
-  // Liste des auteurs
+
   public async listAuthors(): Promise<AuthorModel[]> {
     return this.authorRepository.find();
   }
 
-  //Récupérer un auteur par ID
   public async getAuthor(id: string): Promise<AuthorModel> {
     return this.authorRepository.findOneBy({ id });
   }
-    // Créer un auteur
+
   public async createAuthor(input: CreateAuthorModel): Promise<AuthorModel> {
     const result = await this.authorRepository.save(
       this.authorRepository.create(input),
     );
     return result;
   }
-  // Mettre à jour un auteur
+
   public async updateAuthor(
     id: string,
     input: UpdateAuthorModel,
@@ -37,19 +36,18 @@ export class AuthorRepository {
     await this.authorRepository.update(id, input);
     return this.getAuthor(id);
   }
-  // Supprimer un auteur
+
   public async deleteAuthor(id: string): Promise<void> {
     await this.authorRepository.delete(id);
   }
-    // Incrémenter le nombre de livres d'un auteur
+
   public async incrementBookCount(authorId: string): Promise<void> {
     await this.authorRepository.increment({ id: authorId }, 'bookCount', 1);
   }
-    // Décrémenter le nombre de livres d'un auteur
+
   public async decrementBookCount(authorId: string): Promise<void> {
     await this.authorRepository.decrement({ id: authorId }, 'bookCount', 1);
   }
-    // Récupérer la moyenne des notes pondérées pour un auteur
   public async getWeightedAverageRatingForAuthor(
     authorId: string,
   ): Promise<number> {
