@@ -41,6 +41,7 @@ export class AuthorController {
     return AuthorPresenter.from(author);
   }
 
+  // Supprimer un auteur
   @Delete(':id')
   public async deleteAuthor(@Param('id') id: string): Promise<void> {
     await this.authorService.deleteAuthor(id);

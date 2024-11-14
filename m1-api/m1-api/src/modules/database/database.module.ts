@@ -1,8 +1,8 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthorEntity } from './entities/author.entity';
-import { BookEntity } from './entities/book.entity';
-import { ReviewEntity } from './entities/review.entity';
+import { AuthorEntity } from './author.entity';
+import { BookEntity } from './book.entity';
+import { ReviewEntity } from './review.entity';
 import { Connection } from 'typeorm';
 
 @Module({
