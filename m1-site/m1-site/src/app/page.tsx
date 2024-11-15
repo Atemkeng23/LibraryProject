@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from "react";
-import { GlobalLayout} from "./app/GlobalLayout";
+import { GlobalLayout} from "./GlobalLayout";
 import Link from "next/link";
 
 const Home: FC = () => {
